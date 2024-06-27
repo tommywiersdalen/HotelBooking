@@ -1,4 +1,4 @@
-import { Container, SelectChangeEvent } from "@mui/material";
+import { Alert, Container, SelectChangeEvent } from "@mui/material";
 import TheAppBar from "./TheAppBar";
 import RoomSelect from "./RoomSelect";
 import RoomBookingCard from "./RoomBookingCard";
@@ -17,6 +17,10 @@ export default function Layout() {
 		const selectedRoom = rooms.find((room) => room.id === roomId);
 		setSelectedRoom(selectedRoom || null);
 	};
+	const [showAlert, setShowAlert] = useState(false);
+	const handleAlertClose = () => {
+		setShowAlert(false);
+	};
 	const handleChangeFromDate = (date: Dayjs) => {
 		setFromDate(date);
 	};
@@ -31,6 +35,7 @@ export default function Layout() {
 				toDate: toDate ? toDate.toDate() : new Date(), // Convert Dayjs to Date
 			});
 			setSelectedRoom({ ...selectedRoom });
+			setShowAlert(true);
 		}
 	};
 
@@ -41,16 +46,38 @@ export default function Layout() {
 				(booking) => booking.id !== bookingId
 			);
 			setSelectedRoom({ ...room });
+			setShowAlert(true);
 		}
 	};
 
 	return (
 		<>
+			{showAlert && selectedRoom?.bookings[0] && (
+				<Alert
+					severity="success"
+					onClose={handleAlertClose}>
+					Booking successful
+				</Alert>
+			)}
+			{showAlert && !selectedRoom?.bookings[0] && (
+				<Alert
+					severity="warning"
+					onClose={handleAlertClose}>
+					Booking canceled
+				</Alert>
+			)}
 			<TheAppBar />
 			<Container
+				sx={{
+					display: "flex",
+					flexDirection: "column",
+					alignItems: "center",
+					marginTop: 4,
+				}}
 				disableGutters
 				maxWidth="xl">
 				<h1>Room Booking</h1>
+
 				<RoomSelect
 					selectedRoom={selectedRoom}
 					rooms={rooms}
