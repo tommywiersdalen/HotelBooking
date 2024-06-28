@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { RoomHistory } from "../utils/HotelRoom";
 import { Divider, Paper } from "@mui/material";
+import HistoryIcon from "@mui/icons-material/History";
 
 const style = {
 	position: "absolute" as const,
@@ -30,7 +31,11 @@ export default function HistoryModal(props: HistoryModalProps) {
 
 	return (
 		<div>
-			<Button onClick={handleOpen}>View History</Button>
+			<Button
+				variant="contained"
+				onClick={handleOpen}>
+				<HistoryIcon /> View History
+			</Button>
 			<Modal
 				aria-labelledby="transition-modal-title"
 				aria-describedby="transition-modal-description"

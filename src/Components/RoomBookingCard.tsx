@@ -2,6 +2,8 @@ import { Box, Button, Card, CardActions, CardMedia } from "@mui/material";
 import { HotelRoom } from "../utils/HotelRoom";
 import HistoryModal from "./HistoryModal";
 import BookingDialog from "./BookingDialog";
+import CancelIcon from "@mui/icons-material/Cancel";
+import MoreTimeIcon from "@mui/icons-material/MoreTime";
 import { Dayjs } from "dayjs";
 
 interface RoomBookingCardProps {
@@ -18,7 +20,7 @@ export default function RoomBookingCard(props: RoomBookingCardProps) {
 	return (
 		<Box
 			sx={{
-				minWidth: 120,
+				minWidth: 605,
 				maxWidth: 1 / 2,
 				display: "flex",
 				flexGrow: 1,
@@ -54,8 +56,11 @@ export default function RoomBookingCard(props: RoomBookingCardProps) {
 						<CardActions>
 							{props.room.bookings[0] ? (
 								<>
-									<Button>Extend Booking</Button>
+									<Button variant="contained">
+										<MoreTimeIcon /> Extend Booking
+									</Button>
 									<Button
+										variant="contained"
 										onClick={() =>
 											props.room &&
 											props.cancelBooking(
@@ -63,6 +68,7 @@ export default function RoomBookingCard(props: RoomBookingCardProps) {
 												props.room.bookings[0].id
 											)
 										}>
+										<CancelIcon />
 										Cancel Booking
 									</Button>
 								</>

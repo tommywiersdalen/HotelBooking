@@ -52,6 +52,7 @@ export default function Layout() {
 
 	return (
 		<>
+			<TheAppBar />
 			{showAlert && selectedRoom?.bookings[0] && (
 				<Alert
 					severity="success"
@@ -66,7 +67,6 @@ export default function Layout() {
 					Booking canceled
 				</Alert>
 			)}
-			<TheAppBar />
 			<Container
 				sx={{
 					display: "flex",

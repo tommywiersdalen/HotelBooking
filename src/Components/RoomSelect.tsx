@@ -22,6 +22,7 @@ export default function RoomSelect(props: RoomSelectProps) {
 			<FormControl fullWidth>
 				<InputLabel htmlFor="room-select">Room</InputLabel>
 				<Select
+					sx={{ minWidth: 220 }}
 					labelId="room-select-label"
 					id="room-select"
 					label="Room"

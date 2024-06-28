@@ -12,6 +12,7 @@ import {
 import React from "react";
 import { HotelRoom } from "../utils/HotelRoom";
 import { DatePicker } from "@mui/x-date-pickers";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 import dayjs, { Dayjs } from "dayjs";
 
 interface BookingDialogProps {
@@ -38,8 +39,9 @@ export default function BookingDialog(props: BookingDialogProps) {
 	return (
 		<>
 			<Button
-				variant="outlined"
+				variant="contained"
 				onClick={handleClickOpen}>
+				<AddBoxIcon />
 				Book Room {props.room?.roomNumber}
 			</Button>
 			<Dialog
